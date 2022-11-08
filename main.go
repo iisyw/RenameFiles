@@ -30,15 +30,15 @@ func main() {
 		return
 	}
 
-	fmt.Print("说明：将当前工作路径中第n层的“文件(夹)名.后缀”改为“上级文件夹名-8位随机字符串.后缀”，并删除第n-1层文件夹\n输入指令：\n\tck：查看示例\n\t2~9：层数\n请输入指令：")
+	fmt.Print("说明：将当前工作路径中第 n 层的`所有文件及文件夹`重命名为`所在文件夹名-8 位随机字符串.后缀`，迁出`所在文件夹`并删除`所在文件夹`\n输入指令：\n\teg：查看示例\n\t2~9：文件在第2~9层\n请输入指令：")
 	var str string
 	fmt.Scan(&str)
-	if str == "ck" {
+	if str == "eg" {
 		fmt.Println(`
 ==================举例==================
 当前工作路径：
 	此程序.exe
-	A(第一层文件夹)
+	文件夹A(第一层文件夹)
 		20220901(第二层文件夹)
 			asdohasisaf.jpg(第三层文件)
 			qweqwrasdfas.jpg(第三层文件)
@@ -47,7 +47,7 @@ func main() {
 			adasknfadnf.exe(第三层文件)
 			sadmpanfda.gif(第三层文件)
 			asdjbocasda.txt(第三层文件)
-	B(第一层文件夹)
+	文件夹B(第一层文件夹)
 		20220903(第二层文件夹)
 			nfdosfdaif(第三层文件夹)
 			dapsojfpaf.jpeg(第三层文件)
@@ -56,17 +56,18 @@ func main() {
 			panfpandva(第三层文件夹)
 			onasfdabsad.go(第三层文件)
 			csnoafncoda.c(第三层文件)
-==================输入层数3进行重命名==================
+==========运行程序，输入层数 3 进行确认==========
+说明：将当前工作路径中第 3 层的所有文件及文件夹重命名为“所在文件夹名-8位随机字符串.后缀”，迁出所在文件夹并删除所在文件夹
 当前工作路径：
 	此程序.exe
-	A(第一层文件夹)
+	文件夹A(第一层文件夹)
 		20220901-1oascder.jpg
 		20220901-idjg4ltd.jpg
 		20220901-91jS0scd.png
 		20220902-8sJXNsax.exe
 		20220902-fosJaq2s.gif
 		20220902-asmCmse2.txt
-	B(第一层文件夹)
+	文件夹B(第一层文件夹)
 		20220903-fandpkfn(文件夹)
 		20220904-sadn3fma(文件夹)
 		20220903-qasfpoid.jpeg
@@ -77,7 +78,7 @@ func main() {
 	}
 	layerNum, err := strconv.Atoi(str)
 	if err != nil && strings.Contains("invalid syntax", err.Error()) {
-		fmt.Println("指令输入错误，请输入ck或2~9整数")
+		fmt.Println("指令输入错误，请输入eg或2~9整数")
 		return
 	}
 	if err != nil {
@@ -85,7 +86,7 @@ func main() {
 		return
 	}
 	if layerNum < 2 || layerNum > 9 {
-		fmt.Println("指令输入错误，请输入ck或2~9整数")
+		fmt.Println("指令输入错误，请输入eg或2~9整数")
 		return
 	}
 	perform(currentDir, layerNum, "")
