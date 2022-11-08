@@ -1,26 +1,17 @@
 ### ==================举例==================
 
-> 当前工作路径：
-> 此程序.exe
-> A(第一层文件夹)
->
->         20220901(第二层文件夹)
->
->           asdohasisaf.jpg(第三层文件)
->
->           qweqwrasdfas.jpg(第三层文件)
->
->           sandaofdna.png(第三层文件)
->
->         20220902(第二层文件夹)
->
->           adasknfadnf.exe(第三层文件)
->
->           sadmpanfda.gif(第三层文件)
->
->           asdjbocasda.txt(第三层文件)
->
->         B(第一层文件夹)
+> 当前工作路径：  
+> 此程序.exe  
+> A(第一层文件夹)  
+> 20220901(第二层文件夹)  
+> asdohasisaf.jpg(第三层文件)  
+> qweqwrasdfas.jpg(第三层文件)  
+> sandaofdna.png(第三层文件)  
+> 20220902(第二层文件夹)  
+> adasknfadnf.exe(第三层文件)  
+> sadmpanfda.gif(第三层文件)  
+> asdjbocasda.txt(第三层文件)  
+> B(第一层文件夹)  
 >
 >     	20220903(第二层文件夹)
 >
