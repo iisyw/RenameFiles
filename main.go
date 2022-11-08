@@ -61,19 +61,19 @@ func main() {
 当前工作路径：
 	此程序.exe
 	文件夹A(第一层文件夹)
-		20220901-1oascder.jpg
-		20220901-idjg4ltd.jpg
-		20220901-91jS0scd.png
-		20220902-8sJXNsax.exe
-		20220902-fosJaq2s.gif
-		20220902-asmCmse2.txt
+		20220901-1oascder.jpg(第二层文件)
+		20220901-idjg4ltd.jpg(第二层文件)
+		20220901-91jS0scd.png(第二层文件)
+		20220902-8sJXNsax.exe(第二层文件)
+		20220902-fosJaq2s.gif(第二层文件)
+		20220902-asmCmse2.txt(第二层文件)
 	文件夹B(第一层文件夹)
-		20220903-fandpkfn(文件夹)
-		20220904-sadn3fma(文件夹)
-		20220903-qasfpoid.jpeg
-		20220903-AS9jsfhg.md
-		20220904-sdaclfgf.go
-		20220904-qwedsavx.c`)
+		20220903-fandpkfn(第二层文件夹)
+		20220904-sadn3fma(第二层文件夹)
+		20220903-qasfpoid.jpeg(第二层文件)
+		20220903-AS9jsfhg.md(第二层文件)
+		20220904-sdaclfgf.go(第二层文件)
+		20220904-qwedsavx.c(第二层文件)`)
 		return
 	}
 	layerNum, err := strconv.Atoi(str)
