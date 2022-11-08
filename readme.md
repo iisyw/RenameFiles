@@ -11,23 +11,15 @@
 > adasknfadnf.exe(第三层文件)  
 > sadmpanfda.gif(第三层文件)  
 > asdjbocasda.txt(第三层文件)  
-> B(第一层文件夹)  
->
->     	20220903(第二层文件夹)
->
->     		nfdosfdaif(第三层文件夹)
->
->     		dapsojfpaf.jpeg(第三层文件)
->
->     		asdsakfadfa.md(第三层文件)
->
->     	20220904(第二层文件夹)
->
->     		panfpandva(第三层文件夹)
->
->     		onasfdabsad.go(第三层文件)
->
->     		csnoafncoda.c(第三层文件)
+> B(第一层文件夹)
+> 20220903(第二层文件夹)
+> nfdosfdaif(第三层文件夹)
+> dapsojfpaf.jpeg(第三层文件)
+> asdsakfadfa.md(第三层文件)
+> 20220904(第二层文件夹)
+> panfpandva(第三层文件夹)
+> onasfdabsad.go(第三层文件)
+> csnoafncoda.c(第三层文件)
 
 ### ==================输入层数 3 进行确认==================
 
