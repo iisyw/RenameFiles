@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strconv"
 	"strings"
+	"time"
 )
 
 const letterBytes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -23,6 +24,7 @@ func RandStringBytes(n int) string {
 }
 
 func main() {
+	rand.Seed(time.Now().Unix())
 	// 获取当前目录路径
 	currentDir, err := os.Getwd()
 	if err != nil {
