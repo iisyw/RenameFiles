@@ -7,10 +7,30 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"renameFile/controller"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/spf13/viper"
 )
+
+func init() {
+	viper.SetConfigName("config") // 设置配置文件名为“config”
+	viper.SetConfigType("ini")    // 设置配置文件类型为“ini”
+	viper.AddConfigPath(".")      // 设置在当前目录中查找配置文件
+	if err := viper.ReadInConfig(); err != nil {
+		if _, ok := err.(viper.ConfigFileNotFoundError); ok {
+			// Config file not found; ignore error if desired
+			log.Panic("没有找到配置文件")
+		} else {
+			// Config file was found but another error was produced
+			log.Panic("初始化配置出错", err.Error())
+		}
+	}
+	controller.RenameType = viper.GetInt("fileInfo.rename_type")
+	controller.RandomStringDigit = viper.GetInt("fileInfo.random_string_digit")
+}
 
 const letterBytes = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
@@ -32,7 +52,7 @@ func main() {
 		return
 	}
 
-	fmt.Print("说明：将当前工作路径中第 n 层的`所有文件及文件夹`重命名为`所在文件夹名-8 位随机字符串.后缀`，迁出`所在文件夹`并删除`所在文件夹`\n输入指令：\n\teg：查看示例\n\t2~9：文件在第2~9层\n请输入指令：")
+	fmt.Print("说明：将当前工作路径中第 n 层的`所有文件及文件夹`重命名后，迁出`所在文件夹`并删除`所在文件夹`\n当前工作路径为第一层，不可迁出当前目录文件及文件夹到上一级目录，因此层数为2~9层\n输入指令：\n\teg：查看示例\n\t2~9：文件在第2~9层\n请输入指令：")
 	var str string
 	fmt.Scan(&str)
 	if str == "eg" {
@@ -87,16 +107,16 @@ func main() {
 		log.Println("转整数失败", err.Error())
 		return
 	}
-	if layerNum < 2 || layerNum > 9 {
-		fmt.Println("指令输入错误，请输入eg或2~9整数")
-		return
-	}
+	// if layerNum < 2 || layerNum > 9 {
+	// 	fmt.Println("指令输入错误，请输入eg或2~9整数")
+	// 	return
+	// }
 	perform(currentDir, layerNum, "")
 }
 
 // 执行
 func perform(dir string, layerNum int, dirName string) {
-	// 获取路径下的所有文件
+	// 获取dir路径下的所有文件
 	matches, err := filepath.Glob(path.Join(dir, "*"))
 	if err != nil {
 		log.Println("获取文件夹信息失败", err.Error())
@@ -104,9 +124,9 @@ func perform(dir string, layerNum int, dirName string) {
 	}
 	// 如果层数不等于1
 	if layerNum != 1 {
-		// 循环路径下的所有文件及文件夹
+		// 循环dir路径下的所有文件及文件夹
 		for _, v := range matches {
-			// 获取信息
+			// 获取每个文件或文件夹的信息
 			fileInfo, err := os.Stat(v)
 			if err != nil {
 				log.Println("获取v信息失败", err.Error())
@@ -124,8 +144,13 @@ func perform(dir string, layerNum int, dirName string) {
 	} else {
 		// 如果层数到了最后一层
 		for _, v := range matches {
-			randomStr := RandStringBytes(8)
-			os.Rename(v, path.Join(dir[:len(dir)-len(dirName)-1], dirName+"-"+randomStr+path.Ext(v)))
+			filename := filepath.Base(v)
+			randomStr := RandStringBytes(controller.RandomStringDigit)
+			if controller.RenameType == 1 {
+				os.Rename(v, path.Join(dir[:len(dir)-len(dirName)-1], dirName+"-"+filename))
+			} else if controller.RenameType == 2 {
+				os.Rename(v, path.Join(dir[:len(dir)-len(dirName)-1], dirName+"-"+randomStr+path.Ext(v)))
+			}
 		}
 		// 删除文件夹
 		os.Remove(dir)
