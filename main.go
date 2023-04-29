@@ -107,10 +107,10 @@ func main() {
 		log.Println("转整数失败", err.Error())
 		return
 	}
-	// if layerNum < 2 || layerNum > 9 {
-	// 	fmt.Println("指令输入错误，请输入eg或2~9整数")
-	// 	return
-	// }
+	if layerNum < 2 || layerNum > 9 {
+		fmt.Println("指令输入错误，请输入eg或2~9整数")
+		return
+	}
 	perform(currentDir, layerNum, "")
 }
 
