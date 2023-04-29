@@ -111,11 +111,11 @@ func main() {
 		fmt.Println("指令输入错误，请输入eg或2~9整数")
 		return
 	}
-	perform(currentDir, layerNum, "")
+	renameMoveOut(currentDir, layerNum, "")
 }
 
-// 执行
-func perform(dir string, layerNum int, dirName string) {
+// 重命名并迁出
+func renameMoveOut(dir string, layerNum int, dirName string) {
 	// 获取dir路径下的所有文件
 	matches, err := filepath.Glob(path.Join(dir, "*"))
 	if err != nil {
@@ -135,9 +135,9 @@ func perform(dir string, layerNum int, dirName string) {
 			// 如果是文件夹就继续往下执行，如果层数已经到了倒数第二层，就传入文件夹名
 			if fileInfo.IsDir() {
 				if layerNum == 2 {
-					perform(path.Join(dir, fileInfo.Name()), layerNum-1, fileInfo.Name())
+					renameMoveOut(path.Join(dir, fileInfo.Name()), layerNum-1, fileInfo.Name())
 				} else {
-					perform(path.Join(dir, fileInfo.Name()), layerNum-1, "")
+					renameMoveOut(path.Join(dir, fileInfo.Name()), layerNum-1, "")
 				}
 			}
 		}
